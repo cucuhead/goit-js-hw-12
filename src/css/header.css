@@ -1,10 +1,19 @@
 .header {
   padding: 20px 0;
+  flex-shrink: 0;
 }
+
 .nav {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  max-width: 1200px; /* İçeriği sınırlamak için */
+  padding: 100px 20px 0; /* Üst:100px, sağ-sol:20px */
+  margin: 0 auto; /* Ortalamak için */
+  width: 100%;
+  box-sizing: border-box;
 }
+
 .nav-logo {
   display: inline-flex;
   align-items: center;
@@ -14,31 +23,59 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  list-style-type: none;
   gap: 40px;
 }
 .nav-link {
   position: relative;
+  color: black;
+  font-family: system-ui;
+  font-size: 16px;
+  text-decoration-line: none;
   display: block;
   font-weight: 500;
   letter-spacing: 0.02em;
-  transition: 200ms ease-in;
+  transition: color 200ms ease-in;
 }
-.nav-link:hover,
-.nav-link:focus {
-  color: #747bff;
+
+.nav-link.current {
+  border-bottom-color: #4e75ff;
+  color: #4e75ff;
 }
+
+.nav-link.current::after {
+  left: 0; /* Soldan başlasın */
+  width: 100%; /* Tam genişlik */
+  bottom: -4px; /* Biraz daha aşağıda */
+  height: 2px; /* Daha ince çizgi */
+  background-color: #4e75ff;
+  border-radius: 1px;
+  transform: none; /* Transform yok */
+}
+
+/* Hover ve focus */
+.nav-link:hover::after,
+.nav-link:focus::after {
+  background-color: #747bff;
+  animation: stretch 400ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 200ms both;
+}
+
+/* Alt çizgi efekti */
 .nav-link::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%) translateY(100%);
   width: 110%;
   height: 4px;
   border-radius: 4px;
+  /* background-color: transparent; */
+  transform: translateX(-50%) translateY(100%);
   transform-origin: center;
-  animation: stretch 400ms cubic-bezier(0.68, -0.55, 0.27, 1.55) 200ms both;
+  transition: background-color 250ms ease-in-out;
 }
+
+/* Aktif class varsa (isteğe bağlı) */
 .nav-link.active::after {
   background: #747bff;
 }

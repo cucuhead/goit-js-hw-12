@@ -2,22 +2,64 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
-  <body>
-    <load src="./partials/header.html" icon-path="img/sprite.svg#logo" />
+    <title>Image Search App</title>
 
+    <!-- Stil dosyaları -->
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/search.css" />
+
+    <!-- Loaders.css CDN (animasyon için) -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/loaders.css@0.1.2/loaders.min.css"
+    />
+
+    <!-- iziToast CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/izitoast@1.4.0/dist/css/iziToast.min.css"
+    />
+
+    <!-- SimpleLightbox CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/simplelightbox@2.14.1/dist/simple-lightbox.min.css"
+    />
+  </head>
+
+  <body>
     <main>
-      <!-- Loads the specified .html file -->
-      <load src="./partials/vite-promo.html" />
-      <load src="./partials/badges.html" />
+      <form id="search-form" autocomplete="off">
+        <input
+          type="text"
+          name="searchQuery"
+          placeholder="Search images..."
+          required
+        />
+        <button type="submit">Search</button>
+      </form>
+
+      <p class="loading-text" hidden>Loading images, please wait...</p>
+
+      <!-- Loader -->
+      <div class="loader ball-beat" hidden>
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <!-- Galeri -->
+      <ul class="gallery"></ul>
+
+      <!-- Load More Butonu -->
+      <button id="load-more">Load more</button>
+
+      <!-- Koleksiyon Sonu Mesajı -->
+      <p class="end-message" hidden></p>
     </main>
 
-    <load src="./partials/footer.html" />
-
-    <script type="module" src="./main.js"></script>
+    <!-- JavaScript -->
+    <script type="module" src="./search.js"></script>
   </body>
 </html>
